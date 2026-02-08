@@ -187,7 +187,7 @@ def payment(request, category, id):
     if request.method == 'POST':
     	pform=PaymentForm(request.POST)
     	formData=pform.save(commit=False)
-    	formData.cc_id==request.user.id
+    	formData.cc_id = request.user.id
     	formData.save()
     	selldet.s_stat='Sold'
     	selldet.save()
