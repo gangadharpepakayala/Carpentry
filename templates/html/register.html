@@ -1,0 +1,25 @@
+{% extends 'html/base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="container mt-4">
+	<div class="card col-md-4 mx-auto shadow-lg border border-success">
+		<div class="card-body">
+			<h4>Register</h4>
+			<form method="post">
+				{% csrf_token %}
+				{% for i in t %}
+					{{i}}
+				{% endfor %}
+				<div class="row">
+					<div class="col">
+						<a href="{% url 'log' %}" class="btn btn-warning form-control">Existing User?</a>
+					</div>
+					<div class="col">
+						<input type="submit" value="Submit" class="btn btn-success form-control">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

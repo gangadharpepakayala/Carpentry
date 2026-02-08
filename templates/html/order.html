@@ -1,0 +1,43 @@
+{% extends 'html/base.html' %}
+{% block title %}Order{% endblock %}
+{% block content %}
+<div class="container mt-4">
+	<div class="card col-md-6 mx-auto shadow-lg border border-success">
+		<div class="card-body">
+			<h4 class="text-center border-bottom pb-2">Order</h4>
+			<form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+				
+				<!-- Looping through form fields -->
+				<div class="mb-3">
+					{% for i in q %}
+						<div class="form-group">
+							{{ i.label_tag }}
+							{{ i }}
+						</div>
+					{% endfor %}
+					
+					{% for j in r %}
+						<div class="form-group">
+							{{ j.label_tag }}
+							{{ j }}
+						</div>
+					{% endfor %}
+				</div>
+
+
+				<!-- Buttons Row -->
+				<div class="row">
+					<div class="col">
+						<input type="reset" value="Clear" class="form-control btn btn-danger">
+					</div>
+					<div class="col">
+						<input type="submit" value="Submit" class="btn btn-success form-control">
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %}Orders{% endblock %}
+{% block content %}
+<div class="container-fluid mt-2 " style=" display: flex;
+            flex-wrap: wrap;
+            ">
+    {% for i in s1 %}
+    {% if s1.s_stat != 'Sold' %}
+    <div class="card mr-2 shadow-lg border border-success" style="width: 18rem;">
+        <img  width="100px" height="250px" class="card-img-top" src="{{i.im1.url}}" alt="Card image cap" >
+        <div class="card-body">
+          <h5 class="card-title">{{i.f_name}}</h5>
+          <div class="_3Djpdu">Finish Color - Brownn</div>
+          <p class="card-text">{{i.wd_type}}.</p>
+          <a href="sodet/{{i.prdct_id}}" class="btn btn-primary">View</a>
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
+

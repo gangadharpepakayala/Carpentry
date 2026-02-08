@@ -1,0 +1,78 @@
+{% extends 'html/base.html' %}
+{% block title %}Orders list{% endblock %}
+{% block content %}
+<div class="container-fluid mt-4">
+	<div class="row mx-2">
+		
+		<div class="card col-md shadow-lg h-100">
+			<div class="card-body">
+				<h4 class="text-center bottom-border pd-2" style="border-color: black;">List of Orders</h4>
+				
+				{% for j in data2 %}
+				{% if j %}
+				<table class="table" method="post">	
+					<tr>
+						<th>Order Id</th>
+						<th>Customer</th>
+					    <th>Email</th>
+						<th>Order Name</th>
+						<th>Image</th>
+						<th>Provide wood or Not</th>
+						<th>Wood Type</th>
+						<th>State</th>
+						<th>Status</th>
+						{% if j.olis.o_stat == 'Cancelled' %}
+						<th>Request Status</th>
+						<th>Action</th>
+						{% else %}
+						  {% if j.olis.o_stat != 'Accepted' %}
+						<th>Accept or Not</th>
+						  {% endif %}
+						{% endif %}
+					</tr>
+					
+					<tr>
+						<td>{{j.olis.id}}</td>
+						<td>{{j.cust.username}}</td>
+						<td>{{j.cust.email}}</td>
+						<td>{{j.olis.furniture_name}}</td>
+						<td><img src="{{j.olis.img1.url}}" width="100px" height="100px"></td>
+						<td>{{j.olis.provide_wood}}</td>
+						<td>{{j.olis.wood_type}}</td>
+						<td>{{j.olis.state}}</td>
+						<td>{{j.olis.o_stat}}</td>
+						{% if j.olis.o_stat == 'Cancelled' %}
+						<td>{{j.olis.o_stat}}</td>
+						<td> 
+							<div class="col">
+								<a href="{% url 'scl' j.olis.id %}" class="btn btn-outline-primary form-control ">Sell</a>
+							</div>
+					    </td>
+                        {% else %}
+                         {% if j.olis.o_stat != 'Accepted' %}
+						<td>
+							<div class="row">
+								<div class="col">
+									<a href="{% url 'pa' j.olis.id %}" class="btn btn-outline-primary form-control ">Accept</a>
+								</div>
+								<div class="col">
+									<a href="#" class="btn btn-outline-danger form-control">Reject</a>
+									<p>{{ j.cd_id }}</p>
+								</div>
+							</div>
+						</td>
+						 {% endif %}
+						{% endif %}
+					</tr>
+					{% else %}
+					<td><p>No Orders Found..</p></td>
+					{% endif %}
+					{% endfor %}
+					
+
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

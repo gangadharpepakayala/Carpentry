@@ -1,0 +1,29 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %}Buy{% endblock %}
+{% block content %}
+<div class="container mt-4 float-left">
+	<div class="card col-md-4 mx-auto shadow-lg border border-success">
+	<div class="card-body">
+	<h4>Furniture type</h4>
+	<div class="row">
+		<div class="col">
+			<a href="" class="btn btn-outline-primary form-control">chair<img src="{% static 'images/chair2.jpg' %}" class="rounded-circle" width="20px"></a>			
+		</div>
+		<div class="col">
+			<a href="" class="btn btn-outline-primary form-control">Door<img src="{% static 'images/door1.jpg' %}" class="rounded-circle" width="20px"></a>			
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col">
+			<a href="" class="btn btn-outline-primary form-control">Bed<img src="{% static 'images/bed1.jpg' %}" class="rounded-circle" width="20px"></a>			
+		</div>
+		<div class="col">
+			<a href="" class="btn btn-outline-primary form-control">Sofa<img src="{% static 'images/sofa1.jpg' %}" class="rounded-circle" width="20px"></a>			
+		</div>
+	</div>
+	</div>
+	</div>
+</div>
+{% endblock %}

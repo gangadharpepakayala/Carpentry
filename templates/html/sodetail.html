@@ -1,0 +1,41 @@
+{% extends 'html/base.html' %}
+{% block content %}
+<div class="container mt-2 mx-auto shadow-lg border border-success">
+  <div class="card  mt-2 rounded-lg rounded-sm" style="text-align: center;">
+    <div class="row">
+        <div class="col">
+            <ul>
+                <li><h5 class="card-title">PRODUCT DETAILS</h5></li>
+            </ul>
+        </div>
+    </div>
+ </div>
+   <div class="row">
+        <div class="col-md-4 mb-2  ">
+            <div class="images">
+                <img src="{{ m1.im1.url }}" class="card-img-top" alt="{{ m1.f_name }}" style="height: 200px;width: 300px;">
+                 <br><br>
+                <img src="{{ m1.im2.url }}" class="card-img-top" alt="{{ m1.f_name }}" style="height: 200px;width: 300px;">
+            </div>
+        </div>
+        <div class="col-md-8 ">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ m1.f_name }}</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Wood type:</strong> {{ m1.wd_type }}</li>
+                        <li class="list-group-item"><strong>Dimensions:</strong> {{ m1.dim }}</li>
+                        <li class="list-group-item"><strong>Current price:</strong> ₹{{ m1.c_price}}</li>
+                        <li class="list-group-item"><strong>Original price:</strong><s style="background-color: white; color: red"> ₹{{ m1.o_price }}</s></li>
+                    </ul>
+                    {% if m1.s_stat != 'Sold' %}
+                    <a href="{% url 'payment' m1.f_name m1.prdct_id %}" class="btn btn-success form-control">Book</a>
+                    {% else %} 
+                    <a href="#" class="btn btn-secondary form-control">Sold</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

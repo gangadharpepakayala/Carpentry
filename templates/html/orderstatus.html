@@ -1,0 +1,54 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %}Orders Status{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        {% for j in a3 %}
+        <div class="col-md-6">
+            <div class="card shadow-lg mb-3">
+                <div class="card-body">
+                    <h4>Order Status</h4>
+                    <table class="table">
+                        <tr>
+                            <th>Order Name</th>
+                            <th>Image</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>{{ j.furniture_name }}</td>
+                            <td><img src="{{ j.img1.url }}" width="100px" height="100px"></td>
+                            <td>{{ j.o_stat }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {% if j.o_stat == "Accepted" %}
+        <div class="col-md-6">
+            <div class="card shadow-lg mb-3">
+                <div class="card-body">
+                    <h4>Order Details</h4>
+                    <p><strong>Wood Cost:</strong> ₹ {{ j.wood_price }}</p>
+                    <p><strong>Manufacturing Cost:</strong> ₹ {{ j.manfac_price }}</p>
+                    <p><strong>Order Done on:</strong> {{ j.m_time }}</p>
+                    <div class="row">
+                        <div class="col">
+                            <a href="{% url 'cancel' j.id %}" class="btn btn-danger form-control">Cancel</a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'opsu_payment' j.id %}" class="btn btn-outline-primary form-control">Payment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

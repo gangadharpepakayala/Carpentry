@@ -1,0 +1,29 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %}Orders{% endblock %}
+{% block content %}
+<div class="container-fluid mt-4">
+	<div class="row mx-2">
+		<div class="card col-md-3 shadow-lg mx-2 h-100">
+			<div class="card-body">
+				<h4>Order Cost</h4>
+				<form method="post" enctype='multipart/form-data'>
+					{% csrf_token %}
+					{% for i in p1 %}
+						{{i}}
+					{% endfor %}
+					<div class="row">
+						<div class="col">
+							<input type="reset" value="Clear" class="form-control btn btn-danger">
+						</div>
+						<div class="col">
+							<input type="submit" value="Create" class="form-control btn btn-success">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+	</div>
+</div>
+{% endblock %}

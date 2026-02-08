@@ -1,0 +1,54 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %}Category{% endblock %}
+{% block content %}
+<style>
+    .row,h4{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+</style>
+<div class="container-fluid mt-2">
+    <h4 class="">Select Category</h4>
+    <div class="row" >
+      <div class="card mx-1" style="width: 15rem;">
+        <div class="card-body">
+            <img src="{% static 'images/chair2.jpg' %}" class="cat_image" alt="loading image" width="20px">   
+             <h5 class="card-title">Chairs  <a href="{% url 'char' %}" class="btn btn-outline-primary">Go</a></h5>
+        </div>
+      </div>
+      <div class="card mx-1" style="width: 15rem;">
+        <div class="card-body">
+             <a href=""><img src="{% static 'images/door1.jpg' %}" class="cat_image" alt="loading image" width="20px"></a>
+          <h5 class="card-title">Doors  <a href="{% url 'doo' %}" class="btn btn-outline-primary">Go</a></h5>
+        </div>
+      </div>
+      <div class="card mx-1" style="width: 15rem;">
+        <div class="card-body">
+            <a href=""><img src="{% static 'images/bed1.jpg' %}" class="cat_image" width="20px"></a>
+          <h5 class="card-title">BEDS  <a href="{% url 'bed' %}" class="btn btn-outline-primary">Go</a></h5>
+        </div>
+      </div>
+      <div class="card mx-1" style="width: 15rem;">
+        <div class="card-body">
+            <a href=""><img src="{% static 'images/sofa1.jpg' %}" class="cat_image" width="20px"></a>
+          <h5 class="card-title">Sofas  <a href="{% url 'sofa' %}" class="btn btn-outline-primary">Go</a></h5>
+        </div>
+      </div>
+      <div class="card mx-1" style="width: 15rem;">
+        <div class="card-body">
+            <a href=""><img src="{% static 'images/table2.jpg' %}" class="cat_image" width="20px"></a>
+          <h5 class="card-title">Dinning tables  <a href="{% url 'din' %}" class="btn btn-outline-primary">Go</a></h5>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+
+    
+
+         
+       

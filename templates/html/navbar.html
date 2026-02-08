@@ -1,0 +1,74 @@
+{% load static %}
+<nav class="navbar navbar-expand-md bg-dark navbar-dark rounded-lg">
+  <a class="navbar-brand" href="#">
+    <img src="{% static 'images/img1.jpg' %}" class="rounded-circle" style="width:30px">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+    <ul class="navbar-nav  mx-auto">
+      {% if not user.is_authenticated %}
+      <li class="nav-item ms-5">
+        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+      </li>
+      <li class="nav-item mx-5">
+        <a class="nav-link {% if request.path == '/reg/' %}active{% endif %}" href="{% url 'rg' %}">SignIn</a>
+      </li>
+      <li class="nav-item mx-5">
+        <a class="nav-link {% if request.path == '/abt/' %}active{% endif %}" href="{% url 'ab' %}">About</a>
+      </li>
+      {% else %}
+        <li class="nav-item mx-5">
+          <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+        </li>
+        {% if request.user.role_type == '1' %}
+        <li class="nav-item ms-6 mx-5">
+          <a class="nav-link" href="{% url 'odr' %}">Order</a>
+        </li>
+        <li class="nav-item mx-5">
+        <a class="nav-link" href="{% url 'cat' %}">Buy</a>
+        </li>
+        <li class="nav-item mx-5">
+          <a class="nav-link" href="{% url 'ostat' %}">My Orders</a>
+        </li>
+      <li class="nav-item mx-5">
+        <a class="nav-link {% if request.path == '/abt/' %}active{% endif %}" href="{% url 'ab' %}">About</a>
+      </li>
+      <li class="nav-item mx-5">
+        <a class="nav-link" href="{% url 'lgot' %}">Logout</a>
+        </li>
+      {% elif request.user.role_type == '2' %}
+        <li class="nav-item mx-5">
+        <a class="nav-link" href="{% url 'sel' %}">Sell</a>
+        </li>
+      <li class="nav-item mx-5">
+        <a class="nav-link {% if request.path == '/olist/' %}active{% endif %}" href="{% url 'olist' %}">Orders</a>
+      </li>
+      <li class="nav-item mx-5">
+        <a class="nav-link" href="{% url 'cn' %}">Contact</a>
+        </li>
+      <li class="nav-item mx-5">
+        <a class="nav-link" href="{% url 'lgot' %}">Logout</a>
+        </li>
+      {% endif %}
+      {% endif %}  
+    </ul>
+    <ul class="navbar-nav ml-auto" style="margin-right:10px;">
+      {% if user.is_authenticated %}
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome {{request.user.username}}</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Profile</a>
+        <a class="dropdown-item" href="#">Change Password</a>
+        <a class="dropdown-item" href="{% url 'lgot' %}">Logout</a>
+      </div>
+      </div>
+      {% else %}
+      <li class="nav-item mx-5">
+        <a class="nav-link {% if request.path == '/lgi/' %}active{% endif %}" href="{% url 'log' %}">Login</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>  
+</nav>

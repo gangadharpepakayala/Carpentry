@@ -1,0 +1,38 @@
+from django.urls import path
+from . import views
+from django.contrib.auth import views as ad
+
+urlpatterns = [
+    path('', views.home, name="hm"),
+    path('abt/', views.about, name="ab"),
+    path('reg/', views.register, name="rg"),
+    path('con/', views.contact, name="cn"),
+    path('lgi/', ad.LoginView.as_view(template_name="html/login.html"), name="log"),
+    path('lgo/', ad.LogoutView.as_view(template_name="html/logout.html"), name="lgot"),
+    path('ord/', views.order, name="odr"),
+    path('sell/', views.sell, name="sel"),
+    path('olist/', views.orderlist, name="olist"),
+    path('olist/pa/<int:id>',views.ProdAcc,name="pa"),
+    path('ostat/', views.orderstatus, name="ostat"),
+    path('ostat/opayment/<int:id>', views.opayment, name='opsu_payment'),
+    path('olist/selcancel/<int:id>', views.selcancel, name="scl"),
+    path('cat/', views.Categ, name="cat"),
+    path('ch/', views.chair, name="char"),
+    path('do/', views.door, name="doo"),
+    path('bd/', views.bed, name="bed"),
+    path('so/', views.sofas, name="sofa"),
+    path('dn/', views.dinning, name="din"),
+    path('ch/chdet/<int:id>', views.chdetView, name="cd"),
+    path('pa/<int:id>', views.accept, name="accept"),
+    path('reject/<int:id>', views.reject, name="reject"),
+    path('ostat/cancel/<int:id>', views.cancel, name='cancel'),
+    path('sell/selupd/<int:id>', views.selUpd, name="selupd"),
+    path('sell/sdel/<int:id>', views.seldel, name="sdel"),
+    path('do/dodet/<int:id>', views.dodetView, name="dd"),
+    path('bd/bddet/<int:id>', views.bddetView, name="be"),
+    path('so/sodet/<int:id>', views.sodetView, name="sf"),
+    path('dn/dndet/<int:id>', views.dndetView, name="di"),
+    path('payment/<str:category>/<int:id>/', views.payment, name="payment"),
+    path('tqpage/', views.psu_payment, name='tq_page'),
+    path('ostat/opayment/tqpage/', views.psu_payment, name='tq_page'),
+]

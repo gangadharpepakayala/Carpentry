@@ -1,0 +1,78 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %}Sell {% endblock %}
+{% block content %}
+<div class="container-fluid mt-4">
+	<div class="row mx-2">
+		<div class="card col-md-3 shadow-lg mx-2 h-100">
+			<div class="card-body">
+				<h4>Sell Products</h4>
+				<form method="post" enctype='multipart/form-data'>
+					{% csrf_token %}
+					{% for i in ff %}
+						{{i}}
+					{% endfor %}
+					<div class="row">
+						<div class="col">
+							<input type="reset" value="Clear" class="form-control btn btn-danger">
+						</div>
+						<div class="col">
+							<input type="submit" value="Create" class="form-control btn btn-success">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="card col-md shadow-lg h-100">
+			<div class="card-body">
+				<h4>List of Products</h4>
+				<table class="table">
+					<tr>
+						<th>Product Id</th>
+						<th>Product Name</th>
+						<th>Type</th>
+						<th>Dimensions</th>
+						<th>Original Price</th>
+						<th>Current Price</th>
+						<th>Product Images</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+					{% for j in fg %}
+					<tr>
+						<td>{{j.prdct_id}}</td>
+						<td>{{j.f_name}}</td>
+						<td>{{j.wd_type}}</td>
+						<td>
+							{{j.dim}}
+						</td>
+						<td>
+							<s>₹ {{j.o_price}}</s>
+						</td>
+						<td>
+							₹ {{j.c_price}}
+						</td>
+						<td>
+							<img src="{{ j.im1.url }}" width="100px" height="100px">
+						</td>
+						{% if j.s_stat == 'Sold' %}
+						<td>{{j.s_stat}}</td>
+						{% else %}
+						<td>In Stock</td>
+						{% endif %}
+						{% if j.s_stat != 'Sold' %}
+						<td>
+							<a href="selupd/{{j.prdct_id}}" class="btn btn-outline-warning form-control">UpdatePrice</a>
+						</td>
+						<td>
+							<a href="sdel/{{j.prdct_id}}" class="btn btn-outline-danger form-control">Delete</a>
+						</td>
+						{% endif %}
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
